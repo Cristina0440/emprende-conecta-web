@@ -1,29 +1,45 @@
 'use client';
+import { useState } from 'react';
+import Paso1 from './pasos/Paso1';
+import Paso2 from './pasos/Paso2';
+import Paso3 from './pasos/Paso3';
 
-export default function EmprendedorRegistro() {
+export default function RegistroEmprendedor() {
+  const [paso, setPaso] = useState(1);
+
+  const [formData, setFormData] = useState({
+    nombre: '',
+    email: '',
+    password: '',
+    emprendimiento: '',
+    ubicacion: '',
+    ruc: '',
+    logo: null,
+  });
+
+  const avanzarPaso = () => setPaso((prev) => Math.min(prev + 1, 3));
+  const retrocederPaso = () => setPaso((prev) => Math.max(prev - 1, 1));
+
   return (
-    <div className="w-full max-w-sm">
-      <h2 className="text-xl font-semibold mb-4">Registro - Emprendedor</h2>
-      <form className="flex flex-col gap-4">
-        <input
-          type="text"
-          placeholder="Nombre del negocio"
-          className="px-4 py-2 border rounded-full text-sm"
+    <div className="w-full max-w-md">
+      {paso === 1 && (
+        <Paso1 formData={formData} setFormData={setFormData} onNext={avanzarPaso} />
+      )}
+      {paso === 2 && (
+        <Paso2
+          formData={formData}
+          setFormData={setFormData}
+          onNext={avanzarPaso}
+          onBack={retrocederPaso}
         />
-        <input
-          type="email"
-          placeholder="Correo electrónico"
-          className="px-4 py-2 border rounded-full text-sm"
+      )}
+      {paso === 3 && (
+        <Paso3
+          formData={formData}
+          setFormData={setFormData}
+          onBack={retrocederPaso}
         />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          className="px-4 py-2 border rounded-full text-sm"
-        />
-        <button type="submit" className="bg-[#0B3B5B] text-white py-2 rounded-full">
-          Registrarse
-        </button>
-      </form>
+      )}
     </div>
   );
 }

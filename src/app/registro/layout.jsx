@@ -3,7 +3,7 @@ export default function RegistroLayout({ children }) {
       <div className="min-h-screen flex">
         {/* Izquierda: fondo y logo */}
         <div className="w-1/2 bg-[#0B3B5B] flex flex-col justify-center items-center text-white px-8">
-          <img src="/carrito.png" alt="carrito" className="w-16 mb-4" />
+          <img src="/logo.png" alt="Logo" className="w-16 mb-4" />
           <h1 className="text-2xl font-bold">E&C</h1>
           <p className="text-center mt-2 text-sm">
             Conecta con emprendedores peruanos y descubre <br />
