@@ -43,7 +43,7 @@ export default function Navbar({ usuario = 'Rosmeri Ccanto Flores', mostrarBoton
                 <ul className="flex flex-col">
                   <li className="px-4 py-2 hover:bg-[#164760] cursor-pointer">Perfil</li>
                   <li className="px-4 py-2 hover:bg-[#164760] cursor-pointer">Mis favoritos</li>
-                  <li className="px-4 py-2 hover:bg-[#164760] cursor-pointer">Cerrar sesión</li>
+                  <Link href="/"><li className="px-4 py-2 hover:bg-[#164760] cursor-pointer">Cerrar sesión</li></Link> 
                 </ul>
               </div>
             )}

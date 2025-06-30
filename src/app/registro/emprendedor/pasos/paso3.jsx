@@ -4,15 +4,15 @@ import { useRouter } from 'next/navigation'; //  importar router
 
 export default function Paso3({ formData, setFormData, onBack }) {
 
-    const router = useRouter(); // ✅
+    const router = useRouter(); 
 
     const handleFinalizar = (e) => {
       e.preventDefault();
   
       console.log('Datos del formulario:', formData);
-      // Aquí podrías guardar en una API/backend
+     
   
-      router.push('/home'); // ✅ Ruta a la home
+      router.push('/home'); 
     };
   
     const handleFileChange = (e) => {
