@@ -1,3 +1,4 @@
+// ✅ Archivo: src/app/componentes/CategoriasSection/page.jsx
 'use client'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -13,12 +14,26 @@ const categorias = [
   { nombre: 'Accesorios', imagen: '/accesorios.png' },
   { nombre: 'Belleza', imagen: '/belleza.png' },
   { nombre: 'Manualidades', imagen: '/manualidades.png' },
-  { nombre: 'Mascotas', imagen: '/mascotas.png' },
+  { nombre: 'Mascotas', imagen: '/mascotas.png' }
+]
+
+const emprendimientos = [
+  'Tienda EcoMarket',
+  'Café Literario',
+  'Panadería La Abuela',
+  'Floristería Rosabella',
+  'Moda Urbana Lima',
+  'Pet Lovers Market',
+  'Accesorios D’Moda',
+  'FitFood Express',
+  'Dulce & Natural',
+  'Artesanías Misky'
 ]
 
 export default function CategoriasSection() {
   const [busqueda, setBusqueda] = useState('')
   const [mostrarMenu, setMostrarMenu] = useState(false)
+  const [sugerencias, setSugerencias] = useState([])
   const router = useRouter()
 
   const handleSearch = () => {
@@ -28,7 +43,7 @@ export default function CategoriasSection() {
   }
 
   const handleCategoriaClick = (nombre) => {
-    router.push(`/categoria/${nombre.toLowerCase()}`)
+    router.push(`/emprendimientos?categoria=${encodeURIComponent(nombre.toLowerCase())}`)
   }
 
   const categoriasVisibles = categorias.slice(0, 5)
@@ -81,19 +96,45 @@ export default function CategoriasSection() {
           <span className="text-lg">≡</span> Categorías
         </button>
 
-        {/* Buscador */}
-        <div className="flex items-center border rounded-full overflow-hidden w-full max-w-md">
-          <input
-            type="text"
-            placeholder="Encuentra productos o emprendimientos"
-            value={busqueda}
-            onChange={(e) => setBusqueda(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-            className="flex-1 px-4 py-2 text-sm outline-none"
-          />
-          <button onClick={handleSearch} className="bg-[#0B3B5B] text-white px-4 py-2">
-            🔍
-          </button>
+        {/* Buscador con autocompletado */}
+        <div className="relative w-full max-w-md">
+          <div className="flex items-center border rounded-full overflow-hidden">
+            <input
+              type="text"
+              placeholder="Encuentra productos o emprendimientos"
+              value={busqueda}
+              onChange={(e) => {
+                setBusqueda(e.target.value)
+                const texto = e.target.value.toLowerCase()
+                const coincidencias = emprendimientos.filter(emp => emp.toLowerCase().includes(texto))
+                setSugerencias(coincidencias)
+              }}
+              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+              className="flex-1 px-4 py-2 text-sm outline-none"
+            />
+            <button onClick={handleSearch} className="bg-[#0B3B5B] text-white px-4 py-2">
+              🔍
+            </button>
+          </div>
+
+          {/* Lista de sugerencias */}
+          {sugerencias.length > 0 && (
+            <ul className="absolute z-10 bg-white border rounded-md mt-1 w-full max-h-48 overflow-y-auto shadow-lg">
+              {sugerencias.map((sug, idx) => (
+                <li
+                  key={idx}
+                  className="px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
+                  onClick={() => {
+                    setBusqueda(sug)
+                    setSugerencias([])
+                    router.push(`/buscar?query=${encodeURIComponent(sug)}`)
+                  }}
+                >
+                  {sug}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </section>

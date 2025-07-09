@@ -16,32 +16,32 @@ export default function ChatbotIcon() {
         onClick={toggleChat}
       >
         <Image
-          src="/chatbot-icon.png" // asegúrate de que la imagen esté en public/
+          src="/chatbot-icon.png"
           alt="Chatbot"
           width={60}
           height={60}
         />
       </button>
 
-      {/* El chat que aparece cuando el estado isOpen es true */}
+      
       {isOpen && (
         <div className="fixed bottom-16 right-6 z-50 w-[350px] h-[450px] bg-white shadow-lg rounded-lg p-4">
           <div className="flex justify-between items-center border-b pb-2 mb-2">
             <span className="font-semibold">ChatBot</span>
             <button
               className="text-xl font-bold"
-              onClick={toggleChat} // Cierra el chat al hacer clic en la X
+              onClick={toggleChat} 
             >
               ×
             </button>
           </div>
           <div className="h-full overflow-y-auto">
-            {/* Aquí irían los mensajes del chatbot */}
+            
             <div className="mb-4">
               <div className="text-sm text-gray-600">✨ Hola! Bienvenido(a) 👋</div>
               <div className="text-sm text-gray-600">Soy tu asistente virtual y estoy aquí para ayudarte. ¿En qué puedo apoyarte hoy?</div>
             </div>
-            {/* Puedes agregar más interacciones aquí */}
+            
           </div>
         </div>
       )}

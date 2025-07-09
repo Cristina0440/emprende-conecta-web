@@ -17,7 +17,7 @@ export default function Navbar({ usuario = 'Rosmeri Ccanto Flores', mostrarBoton
 
       {/* Enlaces */}
       <div className="flex items-center gap-8 relative text-[#0B3B5B] font-medium">
-        <Link href="/">Inicio</Link>
+        <Link href="/home">Inicio</Link>
         <li>
       <Link href="/emprendimientos" className="hover:underline">
         Emprendimientos

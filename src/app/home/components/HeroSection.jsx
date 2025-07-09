@@ -6,7 +6,6 @@ export default function HeroSection() {
     <section className="bg-[#ebf9fc] px-6 py-12 rounded-3xl max-w-7xl mx-auto mb-12">
       <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
         
-        {/* Texto */}
         <div className="flex-1 text-left">
           <h1 className="text-4xl font-extrabold text-[#2b4563] leading-tight mb-4">
             Hecho por<br />peruanos,<br />para ti
@@ -16,11 +15,10 @@ export default function HeroSection() {
           </p>
         </div>
 
-        {/* Imagen Única */}
         <div className="flex-1 flex justify-center mt-8 lg:mt-0">
           <div className="relative w-[350px] h-auto rounded-2xl overflow-hidden">
             <Image
-              src="/emprendedores.png" // Asegúrate de que esta imagen exista en public/
+              src="/emprendedores.png" 
               alt="Emprendedores"
               width={700}
               height={500}
